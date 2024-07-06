@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar Eliminación de Compra</title>
+</head>
+<body>
+    <h2>¿Estás seguro que deseas eliminar esta compra?</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Eliminar</button>
+    </form>
+    <a href="{% url 'compra_list' %}">Cancelar</a>
+</body>
+</html>

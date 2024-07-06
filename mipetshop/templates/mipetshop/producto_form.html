@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Producto</title>
+</head>
+<body>
+<div style="text-align: center;">
+    <h2>Formulario CRUD para Productos</h2><br>
+    <form action="{% if producto %}{% url 'producto_update' producto.pk %}{% else %}{% url 'producto_create' %}{% endif %}" method="POST">
+        {% csrf_token %}
+        <pre>Nombre:                    <input type="text" name="nombre" value="{{ producto.nombre }}"    ></pre>
+        <pre>Precio:                    <input type="number" step="0.01" name="precio" value="{{ producto.precio }}"   ></pre>
+        <pre>Descripción:               <textarea name="descripcion">{{ producto.descripcion }}</textarea></pre>
+
+        <input type="submit" value="{% if producto %}Actualizar{% else %}Agregar{% endif %}">
+    </form> <br><br>
+    <a href="{% url 'producto_list' %}"> Volver </a>
+    <br>
+    <div id="idMensajes">
+        {% if mensaje %}
+        {{mensaje}}
+        {% endif %}
+    </div>
+</div>
+</body>
+</html>

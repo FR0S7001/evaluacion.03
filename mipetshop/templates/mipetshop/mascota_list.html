@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de mascotas</title>
+</head>
+<body>
+    <h1>Lista de mascotas</h1>
+    <a href="{% url 'mascota_create' %}">Agregar nuevo cliente</a>
+    <ul>
+        {% for cliente in clientes %}
+            <li>
+                <a href="{% url 'mascota_detail' mascota.pk %}">{{ mascota.nombre }}</a>
+                <a href="{% url 'mascota_update' mascota.pk %}">Editar</a>
+                <a href="{% url 'mascota_delete' mascota.pk %}">Eliminar</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

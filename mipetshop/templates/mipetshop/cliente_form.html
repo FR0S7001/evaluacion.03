@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Cliente</title>
+</head>
+<body>
+<div style="text-align: center;">
+    <h2>Formulario CRUD para Clientes</h2><br>
+    <form action="{% if cliente %}{% url 'cliente_update' cliente.pk %}{% else %}{% url 'cliente_create' %}{% endif %}" method="POST">
+        {% csrf_token %}
+        <pre>Nombre:                    <input type="text" name="nombre" value="{{ cliente.nombre }}"    ></pre>
+        <pre>Email:                     <input type="email" name="email" value="{{ cliente.email }}"   ></pre>
+        <pre>Dirección:                 <input type="text" name="direccion" value="{{ cliente.direccion }}"  ></pre>
+
+        <input type="submit" value="{% if cliente %}Actualizar{% else %}Agregar{% endif %}">
+    </form> <br><br>
+    <a href="{% url 'cliente_list' %}"> Volver </a>
+    <br>
+    <div id="idMensajes">
+        {% if mensaje %}
+        {{mensaje}}
+        {% endif %}
+    </div>
+</div>
+</body>
+</html>

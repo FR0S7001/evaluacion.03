@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detalle de Cliente</title>
+</head>
+<body>
+    <h1>Detalle de Cliente</h1>
+    <p>Nombre: {{ cliente.nombre }}</p>
+    <p>Dirección: {{ cliente.direccion }}</p>
+    <p>Teléfono: {{ cliente.telefono }}</p>
+    <p>Email: {{ cliente.email }}</p>
+    <a href="{% url 'cliente_update' cliente.pk %}">Editar</a>
+    <a href="{% url 'cliente_delete' cliente.pk %}">Eliminar</a>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Mascota</title>
+</head>
+<body>
+<div style="text-align: center;">
+    <h2>Formulario CRUD para Mascotas</h2><br>
+    <form action="{% if mascota %}{% url 'mascota_update' mascota.pk %}{% else %}{% url 'mascota_create' %}{% endif %}" method="POST">
+        {% csrf_token %}
+        <pre>Nombre:                    <input type="text" name="nombre" value="{{ mascota.nombre }}"    ></pre>
+        <pre>Tipo:                      <input type="text" name="tipo" value="{{ mascota.tipo }}"   ></pre>
+        <pre>Edad:                      <input type="number" name="edad" value="{{ mascota.edad }}"  ></pre>
+        <pre>Cliente:                   <select name="cliente">
+            {% for cliente in clientes %}
+                <option value="{{ cliente.pk }}" {% if mascota.cliente.pk == cliente.pk %}selected{% endif %}>{{ cliente.nombre }}</option>
+            {% endfor %}
+        </select></pre>
+
+        <input type="submit" value="{% if mascota %}Actualizar{% else %}Agregar{% endif %}">
+    </form> <br><br>
+    <a href="{% url 'mascota_list' %}"> Volver </a>
+    <br>
+    <div id="idMensajes">
+        {% if mensaje %}
+        {{mensaje}}
+        {% endif %}
+    </div>
+</div>
+</body>
+</html>

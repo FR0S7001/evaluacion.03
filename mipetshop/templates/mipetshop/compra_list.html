@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Compras</title>
+</head>
+<body>
+    <h2>Lista de Compras</h2>
+    <a href="{% url 'compra_add' %}">Agregar Compra</a>
+    <table border="1">
+        <tr>
+            <th>Cliente</th>
+            <th>Fecha de Compra</th>
+            <th>Forma de Pago</th>
+            <th>Total</th>
+            <th>Acciones</th>
+        </tr>
+        {% for compra in compras %}
+        <tr>
+            <td>{{ compra.cliente }}</td>
+            <td>{{ compra.fecha_compra }}</td>
+            <td>{{ compra.forma_pago }}</td>
+            <td>{{ compra.total }}</td>
+            <td>
+                <a href="{% url 'compra_edit' compra.pk %}">Editar</a>
+                <a href="{% url 'compra_delete' compra.pk %}">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
